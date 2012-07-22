@@ -2486,6 +2486,7 @@ klass:              do {
             stop('unexpected_a', token, next_token.id);
         }
         advance();
+        //bookmark - object notattion globals
         if (option.safe && scope[token.string] &&
                 scope[token.string] === global_scope[token.string] &&
                 (next_token.id !== '(' && next_token.id !== '.')) {
@@ -3079,7 +3080,6 @@ klass:              do {
             if (funct === site) {
 
 //      Change 'unused' to 'var', and reject labels.
-
                 switch (funct[name]) {
                 case 'becoming':
                     warn('unexpected_a', token);
@@ -6420,3 +6420,5 @@ klass:              do {
 
     return itself;
 }());
+
+module.exports = JSLINT

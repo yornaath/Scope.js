@@ -1,6 +1,12 @@
 <html>
 <head>
   <title></title>
+
+  <script type="text/javascript">
+    module = { exports: 'lol' }
+    require = function() {}
+  </script>
+
   <script type="text/javascript" src="./jslint.js"></script>
   <script type="text/javascript" src="./Scope.js"></script>
 </head>
@@ -9,81 +15,34 @@
 
   <script type="text/javascript">
 
-
-    
-
-    scope = new Scope()
+    (function(){
 
 
-    scope.eval(function() {
-      // GLOBAL TO SCOPE
+      var scope = new Scope()
+
+      scope.eval(function() {
+
+        s = new Scope()
+
+        s.eval(function() {
+          inner = 'inner'
+        })
+
+      })
+
       
-      var t1 = 't1'
-      var t2 = 't2', t3 = 't3'
-      var t4 = 't4',
-          t5 = 't5'
+      scope.eval(function() {
+        s.eval(function() {
+          console.log(inner)
+        })
+      })
+      
 
-      // GLOBAL TO SCOPE
-      t6 = 't6'
-      t7 = 't7', t8 = 't8'
-      t9 = 't9' ,
-      t10 = 't10';
 
-      function assignSomeGlobals() {
-
-        // PRIVATE
-        var f1 = 'f1'
-        var f2 = 'f2', f3 = 'f3'
-        var f4 = 'f4',
-            f5 = 'f5'
-
-        // GLOBAL TO SCOPE
-        g = 'g'
-        gt = 'gt'
-
-        var assignMore = function() {
-          // GLOBAL TO SCOPE
-          gg = 'gg'
-          ggt = 'ggt'
-        }
-        assignMore()
-      }
-
-      assignSomeGlobals()
-
-      // GLOBAL TO SCOPE
-      var t11 = 't11'
-      var t12 = 't12',
-          t13 = 't13', t14 = 't14'
-
-    })
-
-    scope.eval(function() {
-      console.log('t1', t1);
-      console.log('t2', t2);
-      console.log('t4', t4);
-      console.log('t5', t5);
-      console.log('t7', t7);
-      console.log('t9', t9);
-      console.log('t10', t10);
-      console.log('t11', t11)
-      console.log('t12', t12)
-      console.log('t13', t13)
-      console.log('t14', t14)
-      console.log('g', g)
-      console.log('gt', gt)
-      console.log('gg', gg)
-      console.log('ggt', ggt)
-    })
-
-    scope.eval(function() {
-      newVar = 'new variable'
-    })
-
+    })()
     
-    scope.eval(function() {
-      console.log(newVar);
-    })    
+
+        
 
 
   </script>
