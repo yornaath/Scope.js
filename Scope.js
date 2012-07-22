@@ -1,5 +1,7 @@
 
-var JSLINT = require('./jslint.js') || JSLINT
+if( typeof JSLINT === 'undefined') {
+  var JSLINT = require('./jslint.js')  
+}
 
 function Scope( declarations ) {
 
